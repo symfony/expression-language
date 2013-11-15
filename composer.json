@@ -1,5 +1,5 @@
 {
-    "name": "connexnl/expression-language",
+    "name": "symfony/expression-language",
     "type": "library",
     "description": "Symfony ExpressionLanguage Component",
     "keywords": [],
