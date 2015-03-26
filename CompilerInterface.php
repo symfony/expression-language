@@ -19,10 +19,10 @@ namespace Symfony\Component\ExpressionLanguage;
 interface CompilerInterface
 {
 
-	/**
-	 * @param string $name
-	 * @return ExpressionFunction The function registered using <code>$name</code>
-	 */
+    /**
+     * @param string $name
+     * @return ExpressionFunction The function registered using <code>$name</code>
+     */
     public function getFunction($name);
 
     /**
@@ -32,9 +32,9 @@ interface CompilerInterface
      */
     public function getSource();
 
-	/**
-	 * @return $this The current compiler instance
-	 */
+    /**
+     * @return $this The current compiler instance
+     */
     public function reset();
 
     /**
@@ -46,11 +46,11 @@ interface CompilerInterface
      */
     public function compile(Node\Node $node);
 
-	/**
-	 * @param Node\Node $node
-	 *
-	 * @return string
-	 */
+    /**
+     * @param Node\Node $node
+     *
+     * @return string
+     */
     public function subcompile(Node\Node $node);
 
     /**

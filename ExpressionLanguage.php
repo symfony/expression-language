@@ -25,22 +25,22 @@ class ExpressionLanguage
      * @var ParserCacheInterface
      */
     private $cache;
-	/**
-	 * @var LexerInterface
-	 */
+    /**
+     * @var LexerInterface
+     */
     private $lexer;
-	/**
-	 * @var ParserInterface
-	 */
+    /**
+     * @var ParserInterface
+     */
     private $parser;
-	/**
-	 * @var CompilerInterface
-	 */
+    /**
+     * @var CompilerInterface
+     */
     private $compiler;
 
-	/**
-	 * @var ExpressionFunction[]
-	 */
+    /**
+     * @var ExpressionFunction[]
+     */
     protected $functions = array();
 
     /**
@@ -143,9 +143,9 @@ class ExpressionLanguage
         });
     }
 
-	/**
-	 * @return LexerInterface
-	 */
+    /**
+     * @return LexerInterface
+     */
     protected function getLexer()
     {
         if (null === $this->lexer) {
@@ -155,19 +155,19 @@ class ExpressionLanguage
         return $this->lexer;
     }
 
-	/**
-	 * @param LexerInterface $lexer
-	 * @return $this
-	 */
-	protected function setLexer(LexerInterface $lexer)
-	{
-		$this->lexer = $lexer;
-		return $this;
-	}
+    /**
+     * @param LexerInterface $lexer
+     * @return $this
+     */
+    protected function setLexer(LexerInterface $lexer)
+    {
+        $this->lexer = $lexer;
+        return $this;
+    }
 
-	/**
-	 * @return ParserInterface
-	 */
+    /**
+     * @return ParserInterface
+     */
     protected function getParser()
     {
         if (null === $this->parser) {
@@ -177,19 +177,19 @@ class ExpressionLanguage
         return $this->parser;
     }
 
-	/**
-	 * @param ParserInterface $parser
-	 * @return $this
-	 */
-	protected function setParser($parser)
-	{
-		$this->parser = $parser;
-		return $this;
-	}
+    /**
+     * @param ParserInterface $parser
+     * @return $this
+     */
+    protected function setParser($parser)
+    {
+        $this->parser = $parser;
+        return $this;
+    }
 
-	/**
-	 * @return CompilerInterface
-	 */
+    /**
+     * @return CompilerInterface
+     */
     protected function getCompiler()
     {
         if (null === $this->compiler) {
@@ -199,14 +199,14 @@ class ExpressionLanguage
         return $this->compiler->reset();
     }
 
-	/**
-	 * @param CompilerInterface $compiler
-	 * @return $this
-	 */
-	protected function setCompiler(CompilerInterface $compiler)
-	{
-		$this->compiler = $compiler;
-		return $this;
-	}
+    /**
+     * @param CompilerInterface $compiler
+     * @return $this
+     */
+    protected function setCompiler(CompilerInterface $compiler)
+    {
+        $this->compiler = $compiler;
+        return $this;
+    }
 
 }
