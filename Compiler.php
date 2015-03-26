@@ -16,7 +16,7 @@ namespace Symfony\Component\ExpressionLanguage;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Compiler
+class Compiler implements CompilerInterface
 {
     private $source;
     private $functions;
@@ -129,14 +129,14 @@ class Compiler
         } elseif (is_array($value)) {
             $this->raw('array(');
             $first = true;
-            foreach ($value as $key => $value) {
+            foreach ($value as $key => $keyValue) {
                 if (!$first) {
                     $this->raw(', ');
                 }
                 $first = false;
                 $this->repr($key);
                 $this->raw(' => ');
-                $this->repr($value);
+                $this->repr($keyValue);
             }
             $this->raw(')');
         } else {
