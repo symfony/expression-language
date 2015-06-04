@@ -70,6 +70,10 @@ class GetAttrNode extends Node
 
                 $property = $this->nodes['attribute']->attributes['value'];
 
+                if (!property_exists($obj, $property) && !method_exists($obj, '__get')) {
+                    throw new \RuntimeException('Unable to get a non-supported property.');
+                }
+
                 return $obj->$property;
 
             case self::METHOD_CALL:

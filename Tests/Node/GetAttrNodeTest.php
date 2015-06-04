@@ -44,6 +44,24 @@ class GetAttrNodeTest extends AbstractNodeTest
         );
     }
 
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Unable to get a non-supported property.
+     */
+    public function testAccessorException()
+    {
+        $node = new GetAttrNode(
+            new NameNode('foo'),
+            new ConstantNode('baz'),
+            $this->getArrayNode(),
+            GetAttrNode::PROPERTY_CALL
+        );
+        $variables = array('foo' => new Obj());
+        $functions = [];
+
+        $node->evaluate($functions, $variables);
+    }
+
     protected function getArrayNode()
     {
         $array = new ArrayNode();
