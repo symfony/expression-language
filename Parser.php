@@ -21,7 +21,7 @@ namespace Symfony\Component\ExpressionLanguage;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Parser
+class Parser implements ParserInterface
 {
     const OPERATOR_LEFT = 1;
     const OPERATOR_RIGHT = 2;

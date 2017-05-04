@@ -27,10 +27,22 @@ class ExpressionLanguage
      * @var CacheItemPoolInterface
      */
     private $cache;
+    /**
+     * @var LexerInterface
+     */
     private $lexer;
+    /**
+     * @var ParserInterface
+     */
     private $parser;
+    /**
+     * @var CompilerInterface
+     */
     private $compiler;
 
+    /**
+     * @var ExpressionFunction[]
+     */
     protected $functions = array();
 
     /**
@@ -152,7 +164,10 @@ class ExpressionLanguage
         $this->addFunction(ExpressionFunction::fromPhp('constant'));
     }
 
-    private function getLexer()
+    /**
+     * @return LexerInterface
+     */
+    protected function getLexer()
     {
         if (null === $this->lexer) {
             $this->lexer = new Lexer();
@@ -161,7 +176,20 @@ class ExpressionLanguage
         return $this->lexer;
     }
 
-    private function getParser()
+    /**
+     * @param LexerInterface $lexer
+     * @return $this
+     */
+    protected function setLexer(LexerInterface $lexer)
+    {
+        $this->lexer = $lexer;
+        return $this;
+    }
+
+    /**
+     * @return ParserInterface
+     */
+    protected function getParser()
     {
         if (null === $this->parser) {
             $this->parser = new Parser($this->functions);
@@ -170,7 +198,20 @@ class ExpressionLanguage
         return $this->parser;
     }
 
-    private function getCompiler()
+    /**
+     * @param ParserInterface $parser
+     * @return $this
+     */
+    protected function setParser($parser)
+    {
+        $this->parser = $parser;
+        return $this;
+    }
+
+    /**
+     * @return CompilerInterface
+     */
+    protected function getCompiler()
     {
         if (null === $this->compiler) {
             $this->compiler = new Compiler($this->functions);
@@ -178,4 +219,15 @@ class ExpressionLanguage
 
         return $this->compiler->reset();
     }
+
+    /**
+     * @param CompilerInterface $compiler
+     * @return $this
+     */
+    protected function setCompiler(CompilerInterface $compiler)
+    {
+        $this->compiler = $compiler;
+        return $this;
+    }
+
 }

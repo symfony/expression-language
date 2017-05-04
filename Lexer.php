@@ -16,7 +16,7 @@ namespace Symfony\Component\ExpressionLanguage;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Lexer
+class Lexer implements LexerInterface
 {
     /**
      * Tokenizes an expression.
