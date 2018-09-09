@@ -111,6 +111,9 @@ class BinaryNode extends Node
 
         $right = $this->nodes['right']->evaluate($functions, $values);
 
+        $left = $this->functionAndObjectExecute($left);
+        $right = $this->functionAndObjectExecute($right);
+
         switch ($operator) {
             case '|':
                 return $left | $right;
@@ -154,6 +157,15 @@ class BinaryNode extends Node
                 return preg_match($right, $left);
         }
     }
+
+    private function functionAndObjectExecute($name)
+    {
+        if (is_object($name) || is_callable($name)) {
+            $name = $name();
+        }
+        return $name;
+    }
+
 
     public function toArray()
     {
