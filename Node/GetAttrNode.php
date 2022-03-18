@@ -75,6 +75,10 @@ class GetAttrNode extends Node
 
                 $property = $this->nodes['attribute']->attributes['value'];
 
+                if ($this->nodes['attribute']->isNullSafe) {
+                    return $obj->$property ?? null;
+                }
+
                 return $obj->$property;
 
             case self::METHOD_CALL:
@@ -83,6 +87,9 @@ class GetAttrNode extends Node
                     throw new \RuntimeException(sprintf('Unable to call method "%s" of non-object "%s".', $this->nodes['attribute']->dump(), $this->nodes['node']->dump()));
                 }
                 if (!\is_callable($toCall = [$obj, $this->nodes['attribute']->attributes['value']])) {
+                    if ($this->nodes['attribute']->isNullSafe) {
+                        return null;
+                    }
                     throw new \RuntimeException(sprintf('Unable to call method "%s" of object "%s".', $this->nodes['attribute']->attributes['value'], get_debug_type($obj)));
                 }
 
