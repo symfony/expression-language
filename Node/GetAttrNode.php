@@ -34,11 +34,12 @@ class GetAttrNode extends Node
 
     public function compile(Compiler $compiler)
     {
+        $nullSafe = $this->nodes['attribute'] instanceof ConstantNode ? $this->nodes['attribute']->isNullSafe : false;
         switch ($this->attributes['type']) {
             case self::PROPERTY_CALL:
                 $compiler
                     ->compile($this->nodes['node'])
-                    ->raw('->')
+                    ->raw($nullSafe ? '?->' : '->')
                     ->raw($this->nodes['attribute']->attributes['value'])
                 ;
                 break;
@@ -46,7 +47,7 @@ class GetAttrNode extends Node
             case self::METHOD_CALL:
                 $compiler
                     ->compile($this->nodes['node'])
-                    ->raw('->')
+                    ->raw($nullSafe ? '?->' : '->')
                     ->raw($this->nodes['attribute']->attributes['value'])
                     ->raw('(')
                     ->compile($this->nodes['arguments'])
