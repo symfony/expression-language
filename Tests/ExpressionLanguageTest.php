@@ -245,6 +245,13 @@ class ExpressionLanguageTest extends TestCase
         $el->evaluate('foo.myfunction()', ['foo' => new \stdClass()]);
     }
 
+    public function testCallBadCallableWithNullSafe()
+    {
+        $el = new ExpressionLanguage();
+        $result = $el->evaluate('foo?.myfunction()', ['foo' => new \stdClass()]);
+        $this->assertNull($result);
+    }
+
     /**
      * @dataProvider getRegisterCallbacks
      */
