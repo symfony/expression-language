@@ -340,6 +340,8 @@ class Parser
                 $token = $this->stream->current;
                 if ('.' === $token->value) {
                     $node = $this->parsePostfixExpression($node, true);
+                } else {
+                    $node = $this->parseExpression();
                 }
             } elseif ('.' === $token->value) {
                 $this->stream->next();
