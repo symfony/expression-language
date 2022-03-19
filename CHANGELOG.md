@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+6.0.0
+-----
+
+ * added support of `nullsafe operator` syntax when parsing object's properties
+ * added support of `nullsafe operator` syntax when parsing object's methods
+
 5.1.0
 -----
 
