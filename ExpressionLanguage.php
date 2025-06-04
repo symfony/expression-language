@@ -145,10 +145,7 @@ class ExpressionLanguage
         }
     }
 
-    /**
-     * @return void
-     */
-    protected function registerFunctions()
+    protected function registerFunctions(): void
     {
         $basicPhpFunctions = ['constant', 'min', 'max'];
         foreach ($basicPhpFunctions as $function) {
