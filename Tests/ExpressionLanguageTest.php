@@ -383,9 +383,9 @@ class ExpressionLanguageTest extends TestCase
 
     public static function provideInvalidNullSafe()
     {
-        yield ['foo?.bar.baz', (object) ['bar' => null], 'Unable to get property "baz" of non-object "foo.bar".'];
-        yield ['foo?.bar["baz"]', (object) ['bar' => null], 'Unable to get an item of non-array "foo.bar".'];
-        yield ['foo?.bar["baz"].qux.quux', (object) ['bar' => ['baz' => null]], 'Unable to get property "qux" of non-object "foo.bar["baz"]".'];
+        yield ['foo?.bar.baz', (object) ['bar' => null], 'Unable to get property "baz" of non-object "foo?.bar".'];
+        yield ['foo?.bar["baz"]', (object) ['bar' => null], 'Unable to get an item of non-array "foo?.bar".'];
+        yield ['foo?.bar["baz"].qux.quux', (object) ['bar' => ['baz' => null]], 'Unable to get property "qux" of non-object "foo?.bar["baz"]".'];
     }
 
     /**

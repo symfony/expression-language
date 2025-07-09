@@ -34,7 +34,7 @@ class FunctionNodeTest extends AbstractNodeTestCase
     public static function getDumpData(): array
     {
         return [
-            ['foo("bar")', new FunctionNode('foo', new Node([new ConstantNode('bar')])), ['foo' => static::getCallables()]],
+            ['foo("bar")', new FunctionNode('foo', new Node([new ConstantNode('bar')]))],
         ];
     }
 
