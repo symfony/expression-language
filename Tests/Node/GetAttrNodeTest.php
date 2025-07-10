@@ -15,6 +15,7 @@ use Symfony\Component\ExpressionLanguage\Node\ArrayNode;
 use Symfony\Component\ExpressionLanguage\Node\ConstantNode;
 use Symfony\Component\ExpressionLanguage\Node\GetAttrNode;
 use Symfony\Component\ExpressionLanguage\Node\NameNode;
+use Symfony\Component\ExpressionLanguage\Node\ArgumentsNode;
 
 class GetAttrNodeTest extends AbstractNodeTestCase
 {
@@ -50,10 +51,12 @@ class GetAttrNodeTest extends AbstractNodeTestCase
             ['foo[0]', new GetAttrNode(new NameNode('foo'), new ConstantNode(0), self::getArrayNode(), GetAttrNode::ARRAY_CALL)],
             ['foo["b"]', new GetAttrNode(new NameNode('foo'), new ConstantNode('b'), self::getArrayNode(), GetAttrNode::ARRAY_CALL)],
 
-            ['foo.foo', new GetAttrNode(new NameNode('foo'), new NameNode('foo'), self::getArrayNode(), GetAttrNode::PROPERTY_CALL), ['foo' => new Obj()]],
+            ['foo.foo', new GetAttrNode(new NameNode('foo'), new NameNode('foo'), self::getArrayNode(), GetAttrNode::PROPERTY_CALL)],
 
-            ['foo.foo({"b": "a", 0: "b"})', new GetAttrNode(new NameNode('foo'), new NameNode('foo'), self::getArrayNode(), GetAttrNode::METHOD_CALL), ['foo' => new Obj()]],
+            ['foo.foo({"b": "a", 0: "b"})', new GetAttrNode(new NameNode('foo'), new NameNode('foo'), self::getArrayNode(), GetAttrNode::METHOD_CALL)],
             ['foo[index]', new GetAttrNode(new NameNode('foo'), new NameNode('index'), self::getArrayNode(), GetAttrNode::ARRAY_CALL)],
+
+            ['foo?.foo()', new GetAttrNode(new NameNode('foo'), new ConstantNode('foo', true, true), new ArgumentsNode(), GetAttrNode::METHOD_CALL)],
         ];
     }
 
