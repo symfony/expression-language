@@ -106,7 +106,7 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = null;
         $expressionLanguage = new ExpressionLanguage();
-        eval(sprintf('$result = %s;', $expressionLanguage->compile('enum("Symfony\\\\Component\\\\ExpressionLanguage\\\\Tests\\\\Fixtures\\\\FooEnum::Foo")')));
+        eval(\sprintf('$result = %s;', $expressionLanguage->compile('enum("Symfony\\\\Component\\\\ExpressionLanguage\\\\Tests\\\\Fixtures\\\\FooEnum::Foo")')));
 
         $this->assertSame(FooEnum::Foo, $result);
     }
@@ -122,7 +122,7 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = null;
         $expressionLanguage = new ExpressionLanguage();
-        eval(sprintf('$result = %s;', $expressionLanguage->compile('enum("Symfony\\\\Component\\\\ExpressionLanguage\\\\Tests\\\\Fixtures\\\\FooBackedEnum::Bar")')));
+        eval(\sprintf('$result = %s;', $expressionLanguage->compile('enum("Symfony\\\\Component\\\\ExpressionLanguage\\\\Tests\\\\Fixtures\\\\FooBackedEnum::Bar")')));
 
         $this->assertSame(FooBackedEnum::Bar, $result);
     }
@@ -156,7 +156,7 @@ class ExpressionLanguageTest extends TestCase
     {
         $result = null;
         $expressionLanguage = new ExpressionLanguage();
-        eval(sprintf('$result = %s;', $expressionLanguage->compile($expression, $names)));
+        eval(\sprintf('$result = %s;', $expressionLanguage->compile($expression, $names)));
         $this->assertSame($expected, $result);
     }
 
@@ -312,12 +312,12 @@ class ExpressionLanguageTest extends TestCase
     public function testNullSafeCompile($expression, $foo)
     {
         $expressionLanguage = new ExpressionLanguage();
-        $this->assertNull(eval(sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo']))));
+        $this->assertNull(eval(\sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo']))));
     }
 
     public static function provideNullSafe()
     {
-        $foo = new class() extends \stdClass {
+        $foo = new class extends \stdClass {
             public function bar()
             {
                 return null;
@@ -375,7 +375,7 @@ class ExpressionLanguageTest extends TestCase
         });
 
         try {
-            eval(sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo'])));
+            eval(\sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo'])));
         } finally {
             restore_error_handler();
         }
@@ -403,12 +403,12 @@ class ExpressionLanguageTest extends TestCase
     public function testNullCoalescingCompile($expression, $foo)
     {
         $expressionLanguage = new ExpressionLanguage();
-        $this->assertSame(eval(sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo']))), 'default');
+        $this->assertSame(eval(\sprintf('return %s;', $expressionLanguage->compile($expression, ['foo' => 'foo']))), 'default');
     }
 
     public static function provideNullCoalescing()
     {
-        $foo = new class() extends \stdClass {
+        $foo = new class extends \stdClass {
             public function bar()
             {
                 return null;
