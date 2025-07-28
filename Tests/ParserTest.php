@@ -326,7 +326,7 @@ class ParserTest extends TestCase
         $parser = new Parser([]);
         $parser->lint($lexer->tokenize($expression), $names, $checks);
 
-        // Parser does't return anything when the correct expression is passed
+        // Parser doesn't return anything when the correct expression is passed
         $this->expectNotToPerformAssertions();
     }
 
