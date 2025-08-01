@@ -370,7 +370,7 @@ class ExpressionLanguageTest extends TestCase
     }
 
     #[DataProvider('provideInvalidNullSafe')]
-    public function testNullSafeCompileFails($expression, $foo)
+    public function testNullSafeCompileFails($expression, $foo, $message)
     {
         $expressionLanguage = new ExpressionLanguage();
 
