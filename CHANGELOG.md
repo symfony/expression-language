@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+8.1
+---
+
+ * Add support for null-safe array access syntax (`foo?.[0]`)
+
 8.0
 ---
 

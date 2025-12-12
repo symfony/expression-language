@@ -346,6 +346,8 @@ class ExpressionLanguageTest extends TestCase
         yield ['foo["bar"]?.baz()', ['bar' => null]];
         yield ['foo.bar()?.baz', $foo];
         yield ['foo.bar()?.baz()', $foo];
+        yield ['foo?.[0]', null];
+        yield ['foo?.[0].bar', null];
 
         yield ['foo?.bar.baz', null];
         yield ['foo?.bar["baz"]', null];
@@ -396,6 +398,7 @@ class ExpressionLanguageTest extends TestCase
         yield ['foo?.bar.baz', (object) ['bar' => null], 'Unable to get property "baz" of non-object "foo?.bar".'];
         yield ['foo?.bar["baz"]', (object) ['bar' => null], 'Unable to get an item of non-array "foo?.bar".'];
         yield ['foo?.bar["baz"].qux.quux', (object) ['bar' => ['baz' => null]], 'Unable to get property "qux" of non-object "foo?.bar["baz"]".'];
+        yield ['foo?.[0].bar', [null], 'Unable to get property "bar" of non-object "foo?.[0]".'];
     }
 
     #[DataProvider('provideNullCoalescing')]
