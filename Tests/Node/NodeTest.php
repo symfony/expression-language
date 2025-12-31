@@ -51,7 +51,7 @@ EOF
         }
 
         $node = new Node($nodes);
-        $node->compile($this->createMock(Compiler::class));
+        $node->compile(new Compiler([]));
     }
 
     public function testEvaluateActuallyEvaluatesAllNodes()
