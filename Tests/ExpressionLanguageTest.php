@@ -41,7 +41,7 @@ class ExpressionLanguageTest extends TestCase
         $cacheItemMock
             ->expects($this->exactly(2))
             ->method('get')
-            ->willReturnCallback(function () use (&$savedParsedExpression) {
+            ->willReturnCallback(static function () use (&$savedParsedExpression) {
                 return $savedParsedExpression;
             })
         ;
@@ -50,7 +50,7 @@ class ExpressionLanguageTest extends TestCase
             ->expects($this->exactly(1))
             ->method('set')
             ->with($this->isInstanceOf(ParsedExpression::class))
-            ->willReturnCallback(function ($parsedExpression) use (&$savedParsedExpression, $cacheItemMock) {
+            ->willReturnCallback(static function ($parsedExpression) use (&$savedParsedExpression, $cacheItemMock) {
                 $savedParsedExpression = $parsedExpression;
 
                 return $cacheItemMock;
@@ -236,7 +236,7 @@ class ExpressionLanguageTest extends TestCase
         $cacheItemMock
             ->expects($this->exactly(2))
             ->method('get')
-            ->willReturnCallback(function () use (&$savedParsedExpression) {
+            ->willReturnCallback(static function () use (&$savedParsedExpression) {
                 return $savedParsedExpression;
             })
         ;
@@ -245,7 +245,7 @@ class ExpressionLanguageTest extends TestCase
             ->expects($this->exactly(1))
             ->method('set')
             ->with($this->isInstanceOf(ParsedExpression::class))
-            ->willReturnCallback(function ($parsedExpression) use (&$savedParsedExpression, $cacheItemMock) {
+            ->willReturnCallback(static function ($parsedExpression) use (&$savedParsedExpression, $cacheItemMock) {
                 $savedParsedExpression = $parsedExpression;
 
                 return $cacheItemMock;
@@ -444,17 +444,17 @@ class ExpressionLanguageTest extends TestCase
     {
         return [
             [
-                function (ExpressionLanguage $el) {
-                    $el->register('fn', function () {}, function () {});
+                static function (ExpressionLanguage $el) {
+                    $el->register('fn', static function () {}, static function () {});
                 },
             ],
             [
-                function (ExpressionLanguage $el) {
-                    $el->addFunction(new ExpressionFunction('fn', function () {}, function () {}));
+                static function (ExpressionLanguage $el) {
+                    $el->addFunction(new ExpressionFunction('fn', static function () {}, static function () {}));
                 },
             ],
             [
-                function (ExpressionLanguage $el) {
+                static function (ExpressionLanguage $el) {
                     $el->registerProvider(new TestProvider());
                 },
             ],
