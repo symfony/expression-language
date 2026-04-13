@@ -26,8 +26,9 @@ class NodeTest extends TestCase
             Node(
                 ConstantNode(value: 'foo')
             )
-            EOF
-            , (string) $node);
+            EOF,
+            (string) $node
+        );
     }
 
     public function testSerialization()
