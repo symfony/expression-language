@@ -37,6 +37,6 @@ class SerializedParsedExpression extends ParsedExpression
      */
     public function getNodes()
     {
-        return unserialize($this->nodes);
+        return unserialize($this->nodes, ['allowed_classes' => true]);
     }
 }
